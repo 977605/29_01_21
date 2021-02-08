@@ -26,6 +26,7 @@ public class TextBoxTests {
                 "Chemistry", "usa",
                 "NCR", "Noida");
 
+
         open("https://demoqa.com/automation-practice-form");
         $(".main-header").shouldHave(text("Practice Form"));
 
