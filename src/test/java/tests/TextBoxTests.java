@@ -25,7 +25,9 @@ public class TextBoxTests {
                 "oleg@bk.ru", "2312312321",
                 "Chemistry", "usa",
                 "NCR", "Noida");
-
+        String  dayOfBirth = "10",
+                monthOfBirth = "May",
+                yearOfBirth = "1988";
 
         open("https://demoqa.com/automation-practice-form");
         $(".main-header").shouldHave(text("Practice Form"));
@@ -36,10 +38,12 @@ public class TextBoxTests {
         $("[class='custom-control custom-radio custom-control-inline'], [id ='gender-radio-1']").click();
         $("#userNumber").setValue(data.getUserNumber());
 
-        //date
-        $("#dateOfBirthInput").click();
-        $("[class='react-datepicker__day react-datepicker__day--024 react-datepicker__day--selected'], " +
-                "[aria-label='Choose Wednesday, February 24th, 2021']").click();
+
+        // date
+        $("#dateOfBirthInput").clear();
+        $(".react-datepicker__month-select").selectOption(monthOfBirth);
+        $(".react-datepicker__year-select").selectOption(yearOfBirth);
+        $(".react-datepicker__day--0" + dayOfBirth).click();
 
         $("#subjectsInput").setValue(data.getSubjectsInput()).pressEnter();
 
@@ -60,7 +64,7 @@ public class TextBoxTests {
         $$(".table-responsive tr").filterBy(text("Student email")).shouldHave(texts(data.getUserEmail()));
         $$(".table-responsive tr").filterBy(text("Gender")).shouldHave(texts("Male"));
         $$(".table-responsive tr").filterBy(text("Mobile")).shouldHave(texts(data.getUserNumber()));
-        $$(".table-responsive tr").filterBy(text("Date of birth")).shouldHave(texts("24 February,2021"));
+        $$(".table-responsive tr").filterBy(text("Date of birth")).shouldHave(texts("10 May,1988"));
         $$(".table-responsive tr").filterBy(text("Subjects")).shouldHave(texts(data.getSubjectsInput()));
         $$(".table-responsive tr").filterBy(text("Hobbies")).shouldHave(texts("Sports"));
         $$(".table-responsive tr").filterBy(text("Picture")).shouldHave(texts("1.jpg"));
